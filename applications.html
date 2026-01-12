@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form
+  action="https://formspree.io/f/xqeezdyy"
+  method="POST"
+>
+  <label>
+    Parent Name and Surname:
+    <input type="text" name="parent-name">
+  </label>
+
+  <label>
+    Parent Email Address:
+    <input type="email" name="parent-email">
+  </label>
+
+  <label>
+    Parent Cellphone Number:
+    <input type="tel" name="parent-cell">
+  </label>
+
+  <label>
+    Student Name and Surname:
+    <input type="text" name="student-name">
+  </label>
+
+  <label>
+    Student School:
+    <input type="text" name="student-school">
+  </label>
+
+<label>
+  Student Grade:
+  <input 
+    type="number" 
+    name="student-grade" 
+    min="4" 
+    max="12" 
+    required
+  >
+</label>
+
+
+  <fieldset>
+  <legend>Subjects Required for Tutoring</legend>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="English"> English HL
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Afrikaans"> Afrikaans FAL
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Maths"> Mathematics
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Physics"> Physical Sciences
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Life Sciences"> Life Sciences
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="NS"> Natural Sciences (NS)
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="Geo"> Geography
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="History"> History
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="SS"> Social Sciences (SS)
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="Accounting"> Accounting
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="Business"> Business Studies
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="EMS"> Economic Management Sciences (EMS)
+  </label>
+</fieldset>
+
+<label for="referral-source">
+  How did you hear about us?
+</label>
+<br>
+
+<select name="referral-source" id="referral-source">
+  <option value="" disabled selected>Select an option</option>
+  <option value="Friend or Family">Referral</option>
+  <option value="School">School</option>
+  <option value="Google Search">Google Search</option>
+  <option value="Social Media">Social Media</option>
+  <option value="Flyer or Poster">Flyer or Poster</option>
+  <option value="Previous Student">Previous Student</option>
+  <option value="Other">Other</option>
+</select>
+
+<label>
+Special Requests
+<textarea name="message"></textarea>
+</label>
+
+<button type="submit">APPLY</button>
+</form>
+</body>
+</html>
