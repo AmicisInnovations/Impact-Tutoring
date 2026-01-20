@@ -75,7 +75,7 @@ button:hover{
 }
 
 #nav-logo {
-    height: 50px;
+    height: 70px;
     /* IMAGE PLACEHOLDER - Add logo here */
 }
 
@@ -837,7 +837,7 @@ footer {
 
 .footer-column {
     flex: 1;
-    min-width: 200px;
+    max-width: fit-content;
 }
 
 .footer-column h3 {
@@ -874,7 +874,6 @@ footer a:hover {
 #footer-logo {
     width: 120px;
     height: auto;
-    filter: brightness(0) invert(1); /* Makes logo white */
 }
 
 .social-links {
@@ -888,10 +887,7 @@ footer a:hover {
     font-size: 1.2rem;
 }
 
-#footer-logo {
-    width: 100px;
-    margin-top: 1rem;
-}
+
 
 .footer-bottom {
     text-align: center;
