@@ -4,47 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impact Tutoring</title>
+    <script src="https://kit.fontawesome.com/4b08f514fc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
+<script>
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('.nav-container');
+    const intro = document.querySelector('#intro');
+    
+    if (window.scrollY > intro.offsetHeight * 0.8) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+</script>
 <body>
-    <header>
-        <img src="" alt="Impact Tutoring" id="nav-logo">
-        <ul>
-            <li><a href="tutors.html">Tutors</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-        </ul>
-        <button>Apply Now</button>
+    <header class="nav-container">
+        <nav class="navbar">
+            <img src="" alt="Impact Tutoring" id="nav-logo">
+            <ul class="nav-menu">
+                <li><a href="tutors.html" class="nav-links">Tutors</a></li>
+                <li><a href="pricing.html" class="nav-links">Pricing</a></li>
+            </ul>
+            <button>Apply Now</button>
+        </nav>
     </header>
+    
     <section id="intro">
-        <h1>Personalised Tutoring To Achieve Your Goals!</h1>
-        <h2>Unlock your full potential with expert guidance tailored to your unique learning style.</h2>
-        <h2>Our personalized tutoring service helps students excel academically and gain lasting confidence.</h2>
-        <button>Find Out More</button>
+        <!-- Carousel Container -->
+        <section class="carousel">
+            <!-- Slide 1 -->
+            <article class="slide slide-1 active">
+                <h1>Personalised Tutoring To Achieve Your Goals!</h1>
+                <p>Unlock your full potential with expert guidance tailored to your unique learning style.</p>
+                <button>Find Out More</button>
+            </article>
+            
+            <!-- Slide 2 -->
+            <article class="slide slide-2">
+                <h1>Expert Tutors, Proven Results</h1>
+                <p>Our experienced tutors have helped hundreds of students improve their grades and confidence.</p>
+                <button>Meet Our Tutors</button>
+            </article>
+            
+            <!-- Slide 3 -->
+            <article class="slide slide-3">
+                <h1>Flexible Learning Options</h1>
+                <p>Choose between online sessions or in-person tutoring at our center. Learn your way!</p>
+                <button>View Pricing</button>
+            </article>
+        </section>
     </section>
-    <section id="why-choose-us">
+    
+    
+    <section id="about-section">
+        <section class="content-wrapper">
+            <section class="picture-content">
+                <figure class="circle-image">
+                    <img src="/images/books.jpg" alt="Tutoring">
+                    <figcaption class="block block-1">
+                        <p>Expert tutors with years of experience</p>
+                    </figcaption>
+                    <figcaption class="block block-2">
+                        <p>Students consistently exceed their goals</p>
+                    </figcaption>
+                </figure>
+            </section>
+            
+            <section id="learn" class="learn-content">
+                <h2>Learn from anywhere</h2>
+                <p>Experience interactive, practical tutoring in the environment that works for you: our supportive in-person centre, or live online from your computer, tablet, or phone.</p>
+                <button>Explore Learning Options</button>
+            </section>
+        </section>
+    </section>
+    
+    <section id="what-we-offer">
+        <h2>What We Offer</h2>
+        <section class="offering">
+            <h3>Online or In-Person Learning</h3>
+            <p>Learn from anywhere using your desktop, tablet or mobile phone or visit our tutoring centre for a structured and supportive learning environment. Our tutoring is interactive and practical.</p>
+        </section>
+        <section class="offering">
+            <h3>Experienced Tutors</h3>
+            <p>Our tutors have years of experience between them and are experts in their subject fields.</p>
+        </section>
+        <section class="offering">
+            <h3>Amazing Results</h3>
+            <p>Almost all of our students go on to achieve higher grades than they expected after completing tutoring with us.</p>
+        </section>
+        <button>Apply Now!</button>
+    </section>
+    
+        <section id="why-choose-us">
+        <h2>Why Choose Us?</h2>
         <ul>
             <li>Focused, Personalised Learning</li>
             <li>Proven Academic Results</li>
             <li>Supportive Environment</li>
             <li>Expert Tutors Who Care</li>
         </ul>
-        <section id="what-we-offer">
-            <section class="offering">
-                <h2>Online or In-Person Learning</h2>
-                <p>Learn from anywhere using your desktop, tablet or mobile phone or visit our tutoring centre for a structure and supportive learning environment.
-                    Our tutoring is interactive and practical.
-                </p>
-            </section>
-            <section class="offering">
-                <h2>Experienced Tutors</h2>
-                <p>Our tutors have years of experience between them and are experts in their subject fields.</p>
-            </section>
-            <section class="offering">
-                <h2>Amazing Results</h2>
-                <p>Almost all of our students go on to achieve higher grades than they expected after completing tutoring with us</p>
-            </section>
-        </section>
-        <button>Apply Now!</button>
     </section>
+    
     <section id="subjects">
         <h2>Key Subjects We Cover:</h2>
         <ul>
@@ -59,19 +125,22 @@
             <li>Accounting</li>
         </ul>
     </section>
+    
     <section id="pricing-secondary">
         <h2>Group Classes - R850/month</h2>
         <h2>Individual Lessons - R180/session</h2>
     </section>
+    
     <section id="testimonials">
-        <!--Waiting to get these from Mikhael-->
+        <!-- Waiting to get these from Mikhael -->
     </section>
+    
     <footer>
         <ul>
             <li><a href="tutors.html">Tutors</a></li>
             <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="pricing.html">Apply Now</a></li>
-            <li><a href="pricing.html">Privacy Policy</a></li>
+            <li><a href="apply.html">Apply Now</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
         <ul id="contact-info">
             <li>@impacttutoringsa</li>
