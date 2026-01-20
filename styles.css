@@ -97,7 +97,8 @@ button:hover{
     font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--primary-color);
+    opacity: 80%;
     font-weight: bold;
     height: 50px;
     min-width: 100px;
@@ -223,11 +224,13 @@ section{
 
 .slide h1 {
     font-size: 3.5rem;
+    margin-top: auto;
     margin-bottom: 1.5rem;
     color: var(--text-color);
-    opacity: 0;
+    opacity: 0.2;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease forwards 0.5s;
+    max-width: 50%;
 }
 
 .slide p {
@@ -314,27 +317,14 @@ section{
     animation-play-state: paused;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .slide h1 {
-        font-size: 2.5rem;
-    }
-    
-    .slide p {
-        font-size: 1.2rem;
-        padding: 0 1rem;
-    }
-    
-    .slide button {
-        padding: 0.8rem 2rem;
-        font-size: 1.1rem;
-    }
-}
 
 /* About Section - Picture and Learn side by side */
 #about-section {
     padding: 4rem 2rem;
     background: white;
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
 }
 
 .content-wrapper {
@@ -376,7 +366,7 @@ section{
 }
 
 .learn-content h2 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     color: var(--primary-color);
     margin-bottom: 1.5rem;
 }
@@ -449,7 +439,557 @@ section{
     margin: 0;
 }
 
+
+/* Subjects Carousel */
+#subjects {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    text-align: center;
+    position: relative;
+}
+
+#subjects h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+}
+
+.subjects-carousel {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden; 
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s ease-in-out;
+    padding: 1rem;
+    scroll-behavior: smooth;
+    width: max-content; /* makes track as wide as content */
+    margin: 0 auto; /* Center the track */
+}
+
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.subject-card {
+    position: relative; 
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    text-align: left; 
+    border: 3px solid transparent;
+}
+
+.subject-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--secondary-color);
+}
+
+.subject-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    margin-right: 40px; /* Space for icon */
+    width: calc(100% - 40px); /* Ensure text doesn't go under icon */
+}
+
+.subject-card p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-right: 40px; /* Space for icon */
+    width: calc(100% - 40px); /* Ensure text doesn't go under icon */
+}
+
+
+/* Carousel Navigation */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-arrow:hover {
+    background: var(--secondary-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+    left: -60px; /* Half outside container */
+}
+
+.carousel-next {
+    right: -60px; /* Half outside container */
+}
+
+/* Subject indicators */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+}
+
+.carousel-indicator.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover {
+    background: var(--secondary-color);
+}
+
+
+
+
+/* Font Awesome Icons Style */
+.subject-card .fa, 
+.subject-card .fas, 
+.subject-card .far {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 100px;
+    color: rgba(12, 66, 152, 0.10); /* Always visible but subtle */
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.subject-card:hover .fa,
+.subject-card:hover .fas,
+.subject-card:hover .far {
+    color: rgba(12, 66, 152, 0.10);
+    transform: scale(1.1);
+}
+
+/* Simple Features Section */
+.simple-features {
+    padding: 80px 20px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 0;
+}
+
+.feature {
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+
+.feature-icon {
+    margin: 0 auto 20px;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0c4298;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+}
+/* Pricing Section */
+#pricing-secondary {
+    padding: 4rem 2rem;
+    background: white;
+    text-align: center;
+}
+
+.pricing-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+}
+
+.pricing-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Primary Color Card */
+.primary-card {
+    background: var(--primary-color);
+    color: white;
+    border: 3px solid var(--primary-color);
+}
+
+.primary-card h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.primary-card .price {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.primary-card .price span {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.primary-card .description {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.primary-card .features {
+    list-style: none;
+    text-align: left;
+    margin: 1.5rem 0;
+    padding: 0;
+    width: 100%;
+}
+
+.primary-card .features li {
+    padding: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.primary-card .features li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* White Card */
+.white-card {
+    background: white;
+    color: var(--text-color);
+    border: 3px solid var(--primary-color);
+}
+
+.white-card h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.white-card .price {
+    color: var(--primary-color);
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.white-card .price span {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.white-card .description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.white-card .features {
+    list-style: none;
+    text-align: left;
+    margin: 1.5rem 0;
+    padding: 0;
+    width: 100%;
+}
+
+.white-card .features li {
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.white-card .features li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Pricing Buttons */
+.pricing-btn {
+    margin-top: auto;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.pricing-btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.primary-card .pricing-btn {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.primary-card .pricing-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
 /* Responsive */
+@media (max-width: 768px) {
+    .pricing-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pricing-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .pricing-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .carousel-prev {
+        left: -40px;
+    }
+    
+    .carousel-next {
+        right: -40px;
+    }
+    
+    .subject-card {
+        flex: 0 0 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    .subjects-carousel {
+        padding: 0 1rem;
+        overflow: hidden; /* Keep hidden on mobile for scrolling */
+    }
+    
+    .carousel-track {
+        gap: 1rem;
+        padding: 0.5rem;
+        overflow-x: auto; /* Enable scrolling on mobile */
+        width: auto; /* Reset width for mobile */
+        scrollbar-width: thin;
+        scrollbar-color: var(--secondary-color) #f1f1f1;
+    }
+    
+    .carousel-track::-webkit-scrollbar {
+        height: 6px;
+        display: block;
+    }
+    
+    .carousel-track::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .carousel-track::-webkit-scrollbar-thumb {
+        background: var(--secondary-color);
+        border-radius: 10px;
+    }
+    
+    .subject-card {
+        flex: 0 0 240px;
+        min-height: 180px;
+        padding: 1.5rem;
+    }
+    
+    .subject-card .fa,
+    .subject-card .fas,
+    .subject-card .far {
+        font-size: 24px !important;
+        top: 12px;
+        right: 12px;
+    }
+    
+    .subject-card h3 {
+        font-size: 1.5rem;
+        margin-right: 30px;
+        width: calc(100% - 30px);
+    }
+    
+    .subject-card p {
+        font-size: 0.95rem;
+        margin-right: 30px;
+        width: calc(100% - 30px);
+    }
+    
+    .carousel-arrow {
+        display: none;
+    }
+    
+    .carousel-indicators {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .subject-card {
+        flex: 0 0 200px;
+        min-height: 160px;
+        padding: 1rem;
+    }
+    
+    .subject-card h3 {
+        font-size: 1.3rem;
+        margin-right: 25px;
+        width: calc(100% - 25px);
+    }
+    
+    .subject-card p {
+        font-size: 0.9rem;
+        margin-right: 25px;
+        width: calc(100% - 25px);
+    }
+    
+    .subject-card .fa,
+    .subject-card .fas,
+    .subject-card .far {
+        font-size: 20px !important;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide h1 {
+        font-size: 2.5rem;
+    }
+    
+    .slide p {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+    
+    .slide button {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .circle-image {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .block p {
+        font-size: 1.1rem;
+    }
+    
+    .learn-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .learn-content p {
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .circle-image {
         width: 400px;
@@ -500,23 +1040,21 @@ section{
     }
 }
 
-@media (max-width: 480px) {
-    .circle-image {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .block p {
-        font-size: 1.1rem;
-    }
-    
-    .learn-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .learn-content p {
-        font-size: 1rem;
-    }
+.curved-underline {
+  position: relative;
+  display: inline-block; /* Important for proper width calculation */
+}
+
+.curved-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Adjust vertical position */
+  left: 0;
+  height: 10px; /* Adjust height to control the arc depth */
+  width: 100%;
+  border-top: solid 5px #0c4298; /* Style and color of the line */
+  border-color: #0c4298 transparent transparent transparent; /* Make side borders transparent */
+  border-radius: 60%; /* Create the curved shape */
 }
 
 

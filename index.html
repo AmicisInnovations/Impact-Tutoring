@@ -22,6 +22,111 @@ window.addEventListener('scroll', function() {
         nav.classList.remove('scrolled');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run on desktop
+    if (window.innerWidth <= 768) return;
+    
+    const track = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.subject-card');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    
+    if (!track || !cards.length || !prevBtn || !nextBtn) return;
+    
+    // Remove existing indicators
+    const existingIndicators = document.querySelector('.carousel-indicators');
+    if (existingIndicators) existingIndicators.remove();
+    
+    // Calculate dimensions
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 32; // 2rem = 32px
+    const totalCardWidth = cardWidth + gap;
+    const container = document.querySelector('.subjects-carousel');
+    const containerWidth = container.offsetWidth;
+    
+    // Calculate visible cards
+    const visibleCards = Math.floor(containerWidth / totalCardWidth);
+    const totalCards = cards.length;
+    let currentPosition = 0;
+    
+    console.log('Container width:', containerWidth);
+    console.log('Card width:', cardWidth);
+    console.log('Total card width (with gap):', totalCardWidth);
+    console.log('Visible cards:', visibleCards);
+    
+    // Create indicators if needed
+    if (totalCards > visibleCards && visibleCards > 0) {
+        const totalSlides = totalCards - visibleCards + 1;
+        const indicatorsContainer = document.createElement('section');
+        indicatorsContainer.className = 'carousel-indicators';
+        
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('button');
+            indicator.className = 'carousel-indicator';
+            if (i === 0) indicator.classList.add('active');
+            indicator.setAttribute('data-index', i);
+            indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+        
+        container.appendChild(indicatorsContainer);
+    }
+    
+    // Navigation function
+    function goToSlide(index) {
+        const maxSlide = Math.max(0, totalCards - visibleCards);
+        currentPosition = Math.max(0, Math.min(index, maxSlide));
+        const moveAmount = currentPosition * totalCardWidth;
+        
+        console.log('Moving to slide', index, 'Amount:', moveAmount);
+        track.style.transform = `translateX(-${moveAmount}px)`;
+        
+        // Update indicators
+        document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentPosition);
+        });
+    }
+    
+    // Next button
+    nextBtn.addEventListener('click', () => {
+        const maxSlide = Math.max(0, totalCards - visibleCards);
+        if (currentPosition < maxSlide) {
+            goToSlide(currentPosition + 1);
+        } else {
+            goToSlide(0);
+        }
+    });
+    
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+        const maxSlide = Math.max(0, totalCards - visibleCards);
+        if (currentPosition > 0) {
+            goToSlide(currentPosition - 1);
+        } else {
+            goToSlide(maxSlide);
+        }
+    });
+    
+    // Reset position
+    track.style.transform = 'translateX(0)';
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            // Recalculate and reset
+            const newContainerWidth = container.offsetWidth;
+            const newVisibleCards = Math.floor(newContainerWidth / totalCardWidth);
+            
+            if (currentPosition > Math.max(0, totalCards - newVisibleCards)) {
+                currentPosition = 0;
+                track.style.transform = 'translateX(0)';
+            }
+        }
+    });
+});
+
 </script>
 <body>
     <header class="nav-container">
@@ -40,21 +145,21 @@ window.addEventListener('scroll', function() {
         <section class="carousel">
             <!-- Slide 1 -->
             <article class="slide slide-1 active">
-                <h1>Personalised Tutoring To Achieve Your Goals!</h1>
+                <h1>Personalised Tutoring To <span class="curved-underline">Achieve</span> Your Goals!</h1>
                 <p>Unlock your full potential with expert guidance tailored to your unique learning style.</p>
                 <button>Find Out More</button>
             </article>
             
             <!-- Slide 2 -->
             <article class="slide slide-2">
-                <h1>Expert Tutors, Proven Results</h1>
+                <h1><span class="curved-underline">Expert</span> Tutors Proven Results</h1>
                 <p>Our experienced tutors have helped hundreds of students improve their grades and confidence.</p>
                 <button>Meet Our Tutors</button>
             </article>
             
             <!-- Slide 3 -->
             <article class="slide slide-3">
-                <h1>Flexible Learning Options</h1>
+                <h1><span class="curved-underline">Flexible</span> Learning Options</h1>
                 <p>Choose between online sessions or in-person tutoring at our center. Learn your way!</p>
                 <button>View Pricing</button>
             </article>
@@ -77,59 +182,139 @@ window.addEventListener('scroll', function() {
             </section>
             
             <section id="learn" class="learn-content">
-                <h2>Learn from anywhere</h2>
+                <h2>Learn From <span style="color: #f28500;">Anywhere</span></h2>
                 <p>Experience interactive, practical tutoring in the environment that works for you: our supportive in-person centre, or live online from your computer, tablet, or phone.</p>
                 <button>Explore Learning Options</button>
             </section>
         </section>
     </section>
-    
-    <section id="what-we-offer">
-        <h2>What We Offer</h2>
-        <section class="offering">
-            <h3>Online or In-Person Learning</h3>
-            <p>Learn from anywhere using your desktop, tablet or mobile phone or visit our tutoring centre for a structured and supportive learning environment. Our tutoring is interactive and practical.</p>
-        </section>
-        <section class="offering">
-            <h3>Experienced Tutors</h3>
-            <p>Our tutors have years of experience between them and are experts in their subject fields.</p>
-        </section>
-        <section class="offering">
-            <h3>Amazing Results</h3>
-            <p>Almost all of our students go on to achieve higher grades than they expected after completing tutoring with us.</p>
-        </section>
-        <button>Apply Now!</button>
-    </section>
-    
-        <section id="why-choose-us">
-        <h2>Why Choose Us?</h2>
-        <ul>
-            <li>Focused, Personalised Learning</li>
-            <li>Proven Academic Results</li>
-            <li>Supportive Environment</li>
-            <li>Expert Tutors Who Care</li>
-        </ul>
-    </section>
-    
+
     <section id="subjects">
-        <h2>Key Subjects We Cover:</h2>
-        <ul>
-            <li>English</li>
-            <li>Afrikaans</li>
-            <li>Mathematics</li>
-            <li>Physical Sciences</li>
-            <li>Life Sciences</li>
-            <li>Geography</li>
-            <li>History</li>
-            <li>Business Studies</li>
-            <li>Accounting</li>
-        </ul>
-    </section>
+    <h2><span style="color: #f28500;">Key</span> Subjects We Cover:</h2>
     
-    <section id="pricing-secondary">
-        <h2>Group Classes - R850/month</h2>
-        <h2>Individual Lessons - R180/session</h2>
+    <section class="subjects-carousel">
+        <button class="carousel-arrow carousel-prev" aria-label="Previous subjects">
+            ‹
+        </button>
+        
+        <section class="carousel-track">
+           <article class="subject-card">
+    <i class="fas fa-book subject-icon"></i>
+    <h3>English</h3>
+    <p>Comprehensive language and literature tutoring</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-language subject-icon"></i>
+    <h3>Afrikaans</h3>
+    <p>Language proficiency and exam preparation</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-calculator subject-icon"></i>
+    <h3>Mathematics</h3>
+    <p>From basic algebra to advanced calculus</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-atom subject-icon"></i>
+    <h3>Physical Sciences</h3>
+    <p>Physics and chemistry concepts explained</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-leaf subject-icon"></i>
+    <h3>Life Sciences</h3>
+    <p>Biology and life science tutoring</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-globe-africa subject-icon"></i>
+    <h3>Geography</h3>
+    <p>Physical and human geography</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-scroll subject-icon"></i>
+    <h3>History</h3>
+    <p>Historical events and analysis</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-building subject-icon"></i>
+    <h3>Business Studies</h3>
+    <p>Business concepts and entrepreneurship</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-chart-line subject-icon"></i>
+    <h3>Accounting</h3>
+    <p>Financial principles and bookkeeping</p>
+</article>
+        </section>
+        
+        <button class="carousel-arrow carousel-next" aria-label="Next subjects">
+            ›
+        </button>
     </section>
+</section>
+
+<section id="pricing-secondary">
+    <h2 class="pricing-title">Our Pricing</h2>
+    
+    <section class="pricing-options">
+        <article class="pricing-card primary-card">
+            <h3>Group Classes</h3>
+            <p class="price">R850<span>/month</span></p>
+            <p class="description">Learn in small groups with peers</p>
+            <ul class="features">
+                <li>Interactive group learning</li>
+                <li>Cost-effective option</li>
+            </ul>
+            <button class="pricing-btn">Choose Group Plan</button>
+        </article>
+        
+        <article class="pricing-card white-card">
+            <h3>Individual Lessons</h3>
+            <p class="price">R180<span>/session</span></p>
+            <p class="description">One-on-one personalized attention</p>
+            <ul class="features">
+                <li>Tailored to your needs</li>
+                <li>Flexible scheduling</li>
+            </ul>
+            <button class="pricing-btn">Choose Individual Plan</button>
+        </article>
+    </section>
+</section>
+
+<section class="simple-features">
+    <section class="features-grid">
+        <article class="feature">
+            <i class="fas fa-chalkboard-teacher feature-icon"></i>
+            </figure>
+            <p>Focused, Personalised Learning</p>
+        </article>
+        
+        <article class="feature">
+            <i class="fas fa-graduation-cap feature-icon"></i>
+            </figure>
+            <p>Proven Academic Results</p>
+        </article>
+        
+        <article class="feature">
+            <i class="fas fa-users feature-icon"></i>
+            </figure>
+            <p>Supportive Environment</p>
+        </article>
+        
+        <article class="feature">
+            <i class="fas fa-user-tie feature-icon"></i>
+            </figure>
+            <p>Trusted Tutors Who Care</p>
+        </article>
+    </section>
+</section>
+
     
     <section id="testimonials">
         <!-- Waiting to get these from Mikhael -->
