@@ -1,0 +1,243 @@
+:root{
+    --primary-color: #0c4298;
+    --secondary-color: #f28500;
+    --text-color: #0A142A;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    height: 100%;
+    display: flex; /*Made this flex so that the footer stays at the bottom when page is on a larger screen*/
+    flex-direction: column;
+}
+
+main{
+    flex: 1;
+}
+
+i{
+  color: var(--text-color);
+}
+
+
+/* Form container */
+form {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+/* Form header */
+form::before {
+    content: "Tutoring Application Form";
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0A142A;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+/* Text inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Fieldset styling */
+fieldset {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 25px 0;
+    background: #f8fafc;
+}
+
+legend {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-color);
+    padding: 0 15px;
+    background: white;
+    border-radius: 6px;
+    border: 2px solid var(--primary-color);
+}
+
+/* Checkbox container */
+fieldset label {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 15px 10px 0;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+fieldset label:hover {
+    background: #e3f2fd;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--secondary-color);
+}
+
+/* Select dropdown */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    padding-right: 45px;
+}
+
+/* Textarea */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Submit button */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+
+button[type="submit"]:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Required field indicator */
+input:required {
+    border-left: 4px solid var(--secondary-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    form {
+        padding: 20px;
+    }
+    
+    form::before {
+        font-size: 24px;
+    }
+    
+    fieldset label {
+        display: flex;
+        margin: 10px 0;
+    }
+}
+
+/* Animation for form */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Special styling for grade input */
+input[type="number"] {
+    max-width: 120px;
+}
+
+/* Grid layout for checkbox items */
+@media (min-width: 769px) {
+    fieldset {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    fieldset label {
+        margin: 5px 0;
+    }
+}

@@ -319,7 +319,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <section id="testimonials">
         <!-- Waiting to get these from Mikhael -->
     </section>
-    
+        <button class="back-to-top" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
 <footer>
     <section class="footer-content">
         <section class="footer-column">
@@ -328,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li><a href="tutors.html">Tutors</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="apply.html">Apply Now</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="privacy_policy.html">Privacy Policy</a></li>
             </ul>
         </section>
         
@@ -368,6 +370,39 @@ document.addEventListener('DOMContentLoaded', function() {
         <p class="copyright">© 2026 Impact Tutoring. All rights reserved.</p>
     </section>
 </footer>
-
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add active class to current page in navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage || 
+                    (currentPage === '' && linkPage === 'index.html') ||
+                    (currentPage.includes('privacy_policy') && linkPage.includes('privacy_policy'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

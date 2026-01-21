@@ -6,14 +6,14 @@
     <title>Impact Tutoring</title>
     <script src="https://kit.fontawesome.com/4b08f514fc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="tutors.css">
+    <link rel="stylesheet" href="applications.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
-    <header class="nav-container">
+      <header class="nav-container">
         <nav class="navbar">
         <a href="index.html">
         <img src="images/Impact TUTORING SVG  (3)-nobg.svg" alt="Impact Tutoring" id="nav-logo">
@@ -25,45 +25,123 @@
         <button>Apply Now</button>
         </nav>
     </header>
-    <section id="tutor-intro" class="title" >
-        <h1>Meet the <span style="color: #f28500;">Tutors</span></h1>
-        <p>Our team of inspiring, enthusiastic tutors interact with students throughout the entire learning process. 
-            Here at Impact Tutoring we do not believe in one size fits all, instead we prefer a blend of personalised, interactive and traditional teaching approaches.</p>
-    </section>
-    <section id="tutors" class="tutors">
-            <div class="tutor-card-main">
-            <img src="" alt="Mikhael P" class="tutor-img">
-            <h2>Mikhael P - Principal Tutor and Founder</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            </p>
-        </div>
-        <div class="tutor-card">
-            <img src="" alt="Jayden H" class="tutor-img">
-            <h2>Jayden H - Senior Mathematics Tutor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
-        </div>
-                <div class="tutor-card">
-            <img src="" alt="Dylan N" class="tutor-img">
-            <h2>Dylan N - Physical Sciences and Mathematics Tutor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
-        </div>
-                <div class="tutor-card">
-            <img src="" alt="Mishka R" class="tutor-img">
-            <h2>Mishka R - English and Primary School Tutor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
-        </div>
-    </section>
+    <form
+  action="https://formspree.io/f/xqeezdyy"
+  method="POST"
+>
+  <label>
+    Parent Name and Surname:
+    <input type="text" name="parent-name">
+  </label>
+
+  <label>
+    Parent Email Address:
+    <input type="email" name="parent-email">
+  </label>
+
+  <label>
+    Parent Cellphone Number:
+    <input type="tel" name="parent-cell">
+  </label>
+
+  <label>
+    Student Name and Surname:
+    <input type="text" name="student-name">
+  </label>
+
+  <label>
+    Student School:
+    <input type="text" name="student-school">
+  </label>
+
+<label>
+  Student Grade:
+  <input 
+    type="number" 
+    name="student-grade" 
+    min="4" 
+    max="12" 
+    required
+  >
+</label>
+
+
+  <fieldset>
+  <legend>Subjects Required for Tutoring</legend>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="English"> English HL
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Afrikaans"> Afrikaans FAL
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Maths"> Mathematics
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Physics"> Physical Sciences
+  </label>
+
+  <label>
+    <input type="checkbox" name="subjects[]" value="Life Sciences"> Life Sciences
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="NS"> Natural Sciences (NS)
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="Geo"> Geography
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="History"> History
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="SS"> Social Sciences (SS)
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="Accounting"> Accounting
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="Business"> Business Studies
+  </label>
+
+   <label>
+    <input type="checkbox" name="subjects[]" value="EMS"> Economic Management Sciences (EMS)
+  </label>
+</fieldset>
+
+<label for="referral-source">
+  How did you hear about us?
+</label>
+<br>
+
+<select name="referral-source" id="referral-source">
+  <option value="" disabled selected>Select an option</option>
+  <option value="Friend or Family">Referral</option>
+  <option value="School">School</option>
+  <option value="Google Search">Google Search</option>
+  <option value="Social Media">Social Media</option>
+  <option value="Flyer or Poster">Flyer or Poster</option>
+  <option value="Previous Student">Previous Student</option>
+  <option value="Other">Other</option>
+</select>
+
+<label>
+Special Requests
+<textarea name="message"></textarea>
+</label>
+
+<button type="submit">APPLY</button>
+</form>
+
  <footer>
     <section class="footer-content">
         <section class="footer-column">
