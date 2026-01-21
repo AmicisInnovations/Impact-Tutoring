@@ -61,10 +61,10 @@ button:hover{
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 2rem;
-    max-width: 80%;
+    max-width: 100%;
     margin: 0 auto;
     width: 100%;
-    background: transparent;
+    background:white;
     z-index: 100;
     position: relative
     
@@ -179,6 +179,7 @@ section{
 }
 
 .intro h1{
+    padding-top: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -237,7 +238,7 @@ section{
     opacity: 0.2;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease forwards 0.5s;
-    max-width: 50%;
+    max-width: 70%;
 }
 
 .slide p {
@@ -281,7 +282,7 @@ section{
 
 /* CSS-only carousel animation */
 .slide {
-    animation: carouselAnimation 15s infinite;
+    animation: carouselAnimation 30s infinite;
 }
 
 .slide-1 {
@@ -289,11 +290,11 @@ section{
 }
 
 .slide-2 {
-    animation-delay: 5s;
+    animation-delay: 10s;
 }
 
 .slide-3 {
-    animation-delay: 10s;
+    animation-delay: 20s;
 }
 
 @keyframes carouselAnimation {
@@ -615,8 +616,8 @@ section{
 
 /* Simple Features Section */
 .simple-features {
-    padding: 80px 20px;
-    background: #f8f9fa;
+    padding: 0 20px;
+    background: var(--primary-color);
     text-align: center;
 }
 
@@ -630,7 +631,7 @@ section{
 
 .feature {
     text-align: center;
-    padding: 30px 20px;
+    padding: 10px 20px;
     border-radius: 15px;
     transition: all 0.3s ease;
 }
@@ -642,12 +643,12 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0c4298;
+    color: #f8f9fa;
 }
 
 .feature p {
     font-size: 1rem;
-    color: var(--primary-color);
+    color: #f8f9fa;
     font-weight: 500;
     line-height: 1.6;
     margin: 0;
@@ -655,7 +656,7 @@ section{
 /* Pricing Section */
 #pricing-secondary {
     padding: 4rem 2rem;
-    background: white;
+    background: #f8f9fa;
     text-align: center;
 }
 
@@ -801,7 +802,6 @@ section{
 
 /* Pricing Buttons */
 .pricing-btn {
-    margin-top: auto;
     background-color: var(--secondary-color);
     color: white;
     border: none;
@@ -955,6 +955,92 @@ footer a:hover {
     box-shadow: 0 6px 20px rgba(242, 133, 0, 0.4);
 }
 
+.testimonial-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.testimonial-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+
+.testimonial-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.testimonial-name {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    text-align: right;
+    font-style: italic;
+}
+
+.testimonial {
+    background-color: white;
+    color: var(--text-color);
+    padding: 2rem 1.5rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(12, 66, 152, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonials-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+
+
+.testimonial p:first-of-type {
+    margin-top: 1.5rem;
+    flex-grow: 1;
+}
+
+.quote-icon {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 3rem;
+    color: rgba(12, 66, 152, 0.2);
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+.testimonial-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
@@ -1104,7 +1190,8 @@ footer a:hover {
 
 @media (max-width: 768px) {
     .slide h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        width: 100%;
     }
     
     .slide p {
