@@ -118,10 +118,19 @@
   </label>
 </fieldset>
 
+<label for="class-type">
+  Which package would you like to sign up for?
+  <select name="class-type" id="class-type">
+    <option value="" disabled selected>Select a package</option>
+    <option value="group">Group Classes</option>
+    <option value="individual">Individual Lessons</option>
+  </select>
+</label>
+
+
 <label for="referral-source">
   How did you hear about us?
-</label>
-<br>
+
 
 <select name="referral-source" id="referral-source">
   <option value="" disabled selected>Select an option</option>
@@ -133,6 +142,7 @@
   <option value="Previous Student">Previous Student</option>
   <option value="Other">Other</option>
 </select>
+</label>
 
 <label>
 Special Requests
@@ -150,6 +160,7 @@ Special Requests
                 <li><a href="tutors.html">Tutors</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="apply.html">Apply Now</a></li>
+                <li><a href="terms_of_service.html">Terms Of Service</a></li>
                 <li><a href="privacy_policy.html">Privacy Policy</a></li>
             </ul>
         </section>
@@ -188,8 +199,18 @@ Special Requests
     
     <section class="footer-bottom">
         <p class="copyright">© 2026 Impact Tutoring. All rights reserved.</p>
+        <p class="copyright">Developed by <a href="https://www.amicisinnovations.co.za">Amicis Innovations</a></p>
     </section>
 </footer>
 <script src="index.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+
+  if (type) {
+    const select = document.getElementById('class-type');
+    select.value = type;
+  }
+</script>
 </body>
 </html>

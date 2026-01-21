@@ -128,6 +128,12 @@ button:hover{
     color: white;
 }
 
+@media (max-width: 768px) {
+    .nav-menu{
+        display: none;
+    }
+}
+
 section{
     padding: 2rem;
 
@@ -440,6 +446,11 @@ section{
     margin: 0;
 }
 
+@media (max-width: 768px) {
+    .block{
+        display: none;
+    }
+}
 
 /* Subjects Carousel */
 #subjects {
@@ -804,6 +815,18 @@ section{
     margin-top: 1.5rem;
 }
 
+.pricing-btn a{
+    text-decoration: none;
+}
+
+#individual{
+    color: white;
+}
+
+#group{
+    color: var(--primary-color);
+}
+
 .pricing-btn:hover {
     background-color: var(--primary-color);
     transform: translateY(-3px);
@@ -935,6 +958,7 @@ footer a:hover {
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
+        align-items: center;
         text-align: center;
     }
     

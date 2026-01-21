@@ -29,5 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("options")?.addEventListener("click", () => {
         window.location.href = "pricing.html";
     });
+
+    const priceBtn = document.querySelector(".pricing-btn");
+
+    priceBtn.addEventListener("click", () => {
+        window.location.href = "pricing.html";
+    });
 });
 
