@@ -150,7 +150,7 @@ section{
     color: var(--text-color);
     text-align: center;
     padding: 2rem;
-    margin-top: -80px; /* Adjust based on navbar height */
+    margin-top: 0px; /* Adjust based on navbar height */
     height: 100vh;
     position: relative;
     clip-path: ellipse(70% 100% at 50% 0%);
@@ -1292,3 +1292,25 @@ footer a:hover {
 }
 
 
+#coming-soon{
+    background-color: var(--primary-color);
+    text-align: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+#coming-soon h1{
+    color: var(--secondary-color);
+    font-size: 6rem;
+    margin:1.5rem
+}
+
+#coming-soon h2{
+    color: white;
+    font-size: 3rem;
+}
+
+#coming-soon a{
+    text-decoration: none;
+    color: var(--secondary-color)
+}

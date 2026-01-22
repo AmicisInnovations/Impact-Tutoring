@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Tutoring</title>
+    <script src="https://kit.fontawesome.com/4b08f514fc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<script>
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('.nav-container');
+    const intro = document.querySelector('#intro');
+    
+    if (window.scrollY > intro.offsetHeight * 0.8) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run on desktop
+    if (window.innerWidth <= 768) return;
+    
+    const track = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.subject-card');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    
+    if (!track || !cards.length || !prevBtn || !nextBtn) return;
+    
+    // Remove existing indicators
+    const existingIndicators = document.querySelector('.carousel-indicators');
+    if (existingIndicators) existingIndicators.remove();
+    
+    // Calculate dimensions
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 32; // 2rem = 32px
+    const totalCardWidth = cardWidth + gap;
+    const container = document.querySelector('.subjects-carousel');
+    const containerWidth = container.offsetWidth;
+    
+    // Calculate visible cards
+    const visibleCards = Math.floor(containerWidth / totalCardWidth);
+    const totalCards = cards.length;
+    let currentPosition = 0;
+    
+    console.log('Container width:', containerWidth);
+    console.log('Card width:', cardWidth);
+    console.log('Total card width (with gap):', totalCardWidth);
+    console.log('Visible cards:', visibleCards);
+    
+    // Create indicators if needed
+    if (totalCards > visibleCards && visibleCards > 0) {
+        const totalSlides = totalCards - visibleCards + 1;
+        const indicatorsContainer = document.createElement('section');
+        indicatorsContainer.className = 'carousel-indicators';
+        
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('button');
+            indicator.className = 'carousel-indicator';
+            if (i === 0) indicator.classList.add('active');
+            indicator.setAttribute('data-index', i);
+            indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+        
+        container.appendChild(indicatorsContainer);
+    }
+    
+    // Navigation function
+    function goToSlide(index) {
+        const maxSlide = Math.max(0, totalCards - visibleCards);
+        currentPosition = Math.max(0, Math.min(index, maxSlide));
+        const moveAmount = currentPosition * totalCardWidth;
+        
+        console.log('Moving to slide', index, 'Amount:', moveAmount);
+        track.style.transform = `translateX(-${moveAmount}px)`;
+        
+        // Update indicators
+        document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentPosition);
+        });
+    }
+    
+    // Next button
+    nextBtn.addEventListener('click', () => {
+        const maxSlide = Math.max(0, totalCards - visibleCards);
+        if (currentPosition < maxSlide) {
+            goToSlide(currentPosition + 1);
+        } else {
+            goToSlide(0);
+        }
+    });
+    
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+        const maxSlide = Math.max(0, totalCards - visibleCards);
+        if (currentPosition > 0) {
+            goToSlide(currentPosition - 1);
+        } else {
+            goToSlide(maxSlide);
+        }
+    });
+    
+    // Reset position
+    track.style.transform = 'translateX(0)';
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            // Recalculate and reset
+            const newContainerWidth = container.offsetWidth;
+            const newVisibleCards = Math.floor(newContainerWidth / totalCardWidth);
+            
+            if (currentPosition > Math.max(0, totalCards - newVisibleCards)) {
+                currentPosition = 0;
+                track.style.transform = 'translateX(0)';
+            }
+        }
+    });
+});
+
+</script>
+<body>
+    <header class="nav-container">
+        <nav class="navbar">
+            <img src="images/Impact TUTORING SVG  (3)-nobg.svg" alt="Impact Tutoring" id="nav-logo">
+            <ul class="nav-menu">
+                <li><a href="tutors.html" class="nav-links">Tutors</a></li>
+                <li><a href="pricing.html" class="nav-links">Pricing</a></li>
+            </ul>
+            <button id="appnow">Apply Now</button>
+        </nav>
+    </header>
+    
+    <section id="intro">
+        <!-- Carousel Container -->
+        <section class="carousel">
+            <!-- Slide 1 -->
+            <article class="slide slide-1 active">
+                <h1>Personalised Tutoring To <span class="curved-underline">Achieve</span> Your Goals!</h1>
+                <p>Unlock your full potential with expert guidance tailored to your unique learning style.</p>
+                <button id="finmore">Find Out More</button>
+            </article>
+            
+            <!-- Slide 2 -->
+            <article class="slide slide-2">
+                <h1><span class="curved-underline">Expert</span> Tutors Proven Results</h1>
+                <p>Our experienced tutors have helped hundreds of students improve their grades and confidence.</p>
+                <button id="tutors">Meet Our Tutors</button>
+            </article>
+            
+            <!-- Slide 3 -->
+            <article class="slide slide-3">
+                <h1><span class="curved-underline">Flexible</span> Learning Options</h1>
+                <p>Choose between online sessions or in-person tutoring at our center. Learn your way!</p>
+                <button id="prices">View Pricing</button>
+            </article>
+        </section>
+    </section>
+    
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>At Impact Tutoring, we are dedicated to transforming the learning experience. 
+            Our personalised, results-driven tutoring turns confusion into clarity, builds genuine confidence, and empowers students to achieve meaningful, lasting academic progress. 
+            We envision a future where every learner recognises their potential, feels confident in their abilities, and leaves tutoring ready to make a lasting impact in their academic journey and beyond.</p>
+    </section>
+    <section id="about-section">
+        <section class="content-wrapper">
+            <section class="picture-content">
+                <figure class="circle-image">
+                    <img src="/images/books.jpg" alt="Tutoring">
+                    <figcaption class="block block-1">
+                        <p>Expert tutors with years of experience</p>
+                    </figcaption>
+                    <figcaption class="block block-2">
+                        <p>Students consistently exceed their goals</p>
+                    </figcaption>
+                </figure>
+            </section>
+            
+            <section id="learn" class="learn-content">
+                <h2>Learn From <span style="color: #f28500;">Anywhere</span></h2>
+                <p>Experience interactive, practical tutoring in the environment that works for you: our supportive in-person centre, or live online from your computer, tablet, or phone.</p>
+                <button id="options">Explore Learning Options</button>
+            </section>
+        </section>
+    </section>
+
+    <section id="subjects">
+    <h2><span style="color: #f28500;">Key</span> Subjects We Cover:</h2>
+    
+    <section class="subjects-carousel">
+        <button class="carousel-arrow carousel-prev" aria-label="Previous subjects">
+            ‹
+        </button>
+        
+        <section class="carousel-track">
+           <article class="subject-card">
+    <i class="fas fa-book subject-icon"></i>
+    <h3>English</h3>
+    <p>Comprehensive language and literature tutoring</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-language subject-icon"></i>
+    <h3>Afrikaans</h3>
+    <p>Language proficiency and exam preparation</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-calculator subject-icon"></i>
+    <h3>Mathematics</h3>
+    <p>From basic algebra to advanced calculus</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-atom subject-icon"></i>
+    <h3>Physical Sciences</h3>
+    <p>Physics and chemistry concepts explained</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-leaf subject-icon"></i>
+    <h3>Life Sciences</h3>
+    <p>Biology and life science tutoring</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-globe-africa subject-icon"></i>
+    <h3>Geography</h3>
+    <p>Physical and human geography</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-scroll subject-icon"></i>
+    <h3>History</h3>
+    <p>Historical events and analysis</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-building subject-icon"></i>
+    <h3>Business Studies</h3>
+    <p>Business concepts and entrepreneurship</p>
+</article>
+
+<article class="subject-card">
+    <i class="fas fa-chart-line subject-icon"></i>
+    <h3>Accounting</h3>
+    <p>Financial principles and bookkeeping</p>
+</article>
+        </section>
+        
+        <button class="carousel-arrow carousel-next" aria-label="Next subjects">
+            ›
+        </button>
+    </section>
+</section>
+
+<section class="simple-features">
+    <section class="features-grid">
+        <article class="feature">
+            <i class="fas fa-chalkboard-teacher feature-icon"></i>
+            </figure>
+            <p>Focused, Personalised Learning</p>
+        </article>
+        
+        <article class="feature">
+            <i class="fas fa-graduation-cap feature-icon"></i>
+            </figure>
+            <p>Proven Academic Results</p>
+        </article>
+        
+        <article class="feature">
+            <i class="fas fa-users feature-icon"></i>
+            </figure>
+            <p>Supportive Environment</p>
+        </article>
+        
+        <article class="feature">
+            <i class="fas fa-user-tie feature-icon"></i>
+            </figure>
+            <p>Trusted Tutors Who Care</p>
+        </article>
+    </section>
+</section>
+
+<section id="pricing-secondary">
+    <h2 class="pricing-title">Our Pricing</h2>
+    
+    <section class="pricing-options">
+        <article class="pricing-card primary-card">
+            <h3>Group Classes</h3>
+            <p class="price">R850<span>/month</span></p>
+            <p class="description">Learn in small groups with peers</p>
+            <ul class="features">
+                <li>Interactive group learning</li>
+                <li>Cost-effective option</li>
+            </ul>
+            <button class="pricing-btn">Choose Group Plan</button>
+        </article>
+        
+        <article class="pricing-card white-card">
+            <h3>Individual Lessons</h3>
+            <p class="price">R180<span>/session</span></p>
+            <p class="description">One-on-one personalized attention</p>
+            <ul class="features">
+                <li>Tailored to your needs</li>
+                <li>Flexible scheduling</li>
+            </ul>
+            <button class="pricing-btn">Choose Individual Plan</button>
+        </article>
+    </section>
+</section>
+
+    
+<section id="testimonials" >
+     <div class="testimonials-header">
+        <h2>What <span class="curved-underline">Parents</span> Say</h2>
+    </div>
+    <div class="testimonial-container">
+    <div class="testimonial">
+        <div class="quote-icon">"</div>
+        <div class="testimonial-content">
+            <p>“My daughter was really struggling with Maths and had very little confidence in herself. 
+                Since starting with Impact Tutoring, <span style="color: #f28500;">understanding has improved so much</span> and she’s no longer afraid to ask questions. 
+                Her marks have gone up, but more importantly, her confidence has grown. 
+                 We are extremely grateful.”
+            </p>
+            <p class="testimonial-name">Mrs Naidoo</p>
+        </div>
+    </div>
+    
+    <div class="testimonial">
+        <div class="quote-icon">"</div>
+        <div class="testimonial-content">
+            <p>“The transition to high school was overwhelming for my child, especially Maths. 
+                Impact Tutoring helped break everything down in a way that <span style="color: #f28500;"> actually made sense.</span> 
+                We’ve seen a big improvement in both understanding and test results. Highly recommended.”
+            </p>
+            <p class="testimonial-name">Caleb's Mom</p>
+        </div>
+    </div>
+    
+    <div class="testimonial">
+        <div class="quote-icon">"</div>
+        <div class="testimonial-content">
+            <p>“Impact Tutoring played a huge role in my child’s matric year. 
+                The extra support, exam techniques, and encouragement made a massive difference. 
+                We saw real growth <span style="color: #f28500;"> not just academically, but in discipline and confidence as well.”</span>
+            </p>
+            <p class="testimonial-name">Mrs Makgamatho</p>
+        </div>
+    </div>
+    </div>
+</section>
+        <button class="back-to-top" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+<footer>
+    <section class="footer-content">
+        <section class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="tutors.html">Tutors</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="apply.html">Apply Now</a></li>
+                <li><a href="terms_of_service.html">Terms Of Service</a></li>
+                <li><a href="privacy_policy.html">Privacy Policy</a></li>
+            </ul>
+        </section>
+        
+        <section class="footer-column">
+            <h3>Contact Us</h3>
+            <ul id="contact-info">
+                <li>@impacttutoringsa</li>
+                <li>mikhael@impact-tutoring.co.za</li>
+                <li>068 601 1394</li>
+                <li>20 Lake Arthur Street, Brackendowns, Alberton, 1448</li>
+            </ul>
+        </section>
+        
+        <section class="footer-column">
+            <h3>Connect With Us</h3>
+            <section class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </section>
+        </section>
+           <section class="footer-column logo-column">
+    <a href="index.html" id="footer-logo-link">
+        <img 
+            src="images/WhatsApp Image 2026-01-15 at 09.26.54.jpeg" 
+            alt="Impact Tutoring" 
+            id="footer-logo">
+    </a>
+</section>
+
+    </section>
+    
+    <section class="footer-bottom">
+        <p class="copyright">© 2026 Impact Tutoring. All rights reserved.</p>
+        <p class="copyright">Developed by <a href="https://www.amicisinnovations.co.za">Amicis Innovations</a></p>
+    </section>
+</footer>
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add active class to current page in navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage || 
+                    (currentPage === '' && linkPage === 'index.html') ||
+                    (currentPage.includes('privacy_policy') && linkPage.includes('privacy_policy'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+<script src="index.js"></script>
+</body>
+</html>
