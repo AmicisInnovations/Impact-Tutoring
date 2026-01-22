@@ -1290,28 +1290,3 @@ footer a:hover {
   border-color: #0c4298 transparent transparent transparent; /* Make side borders transparent */
   border-radius: 60%; /* Create the curved shape */
 }
-
-
-#coming-soon{
-    background-color: var(--primary-color);
-    text-align: center;
-    align-items: center;
-    padding: 4rem;
-    width: 100vh;
-}
-
-#coming-soon h1{
-    color: var(--secondary-color);
-    font-size: 6rem;
-    margin:1.5rem
-}
-
-#coming-soon h2{
-    color: white;
-    font-size: 3rem;
-}
-
-#coming-soon a{
-    text-decoration: none;
-    color: var(--secondary-color)
-}
