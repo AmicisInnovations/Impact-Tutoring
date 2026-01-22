@@ -1297,6 +1297,7 @@ footer a:hover {
     text-align: center;
     align-items: center;
     padding: 4rem;
+    width: 100vh;
 }
 
 #coming-soon h1{
