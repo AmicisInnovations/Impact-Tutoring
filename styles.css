@@ -993,6 +993,7 @@ footer a:hover {
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
+    color: white;
 }
 
 .social-link {
@@ -1082,11 +1083,11 @@ footer a:hover {
     padding: 2rem 1.5rem 1.5rem;
     border-radius: 10px;
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 400px;
     box-shadow: 0 4px 15px rgba(12, 66, 152, 0.3);
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-height: 300px;
 }
 .testimonials-header {
