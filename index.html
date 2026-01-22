@@ -11,122 +11,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
-<script>
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('.nav-container');
-    const intro = document.querySelector('#intro');
-    
-    if (window.scrollY > intro.offsetHeight * 0.8) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Only run on desktop
-    if (window.innerWidth <= 768) return;
-    
+<script> 
+    document.addEventListener('DOMContentLoaded', function() {
+    // Only ensure scrollbar works, no carousel logic
     const track = document.querySelector('.carousel-track');
-    const cards = document.querySelectorAll('.subject-card');
+    
+    if (!track) return;
+    
+    // Reset any transforms that might hide scrollbar
+    track.style.transform = 'none';
+    track.style.overflowX = 'auto';
+    
+    // Remove any existing indicators
+    const indicators = document.querySelector('.carousel-indicators');
+    if (indicators) {
+        indicators.remove();
+    }
+    
+    // Remove arrow navigation if present
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
     
-    if (!track || !cards.length || !prevBtn || !nextBtn) return;
-    
-    // Remove existing indicators
-    const existingIndicators = document.querySelector('.carousel-indicators');
-    if (existingIndicators) existingIndicators.remove();
-    
-    // Calculate dimensions
-    const cardWidth = cards[0].offsetWidth;
-    const gap = 32; // 2rem = 32px
-    const totalCardWidth = cardWidth + gap;
-    const container = document.querySelector('.subjects-carousel');
-    const containerWidth = container.offsetWidth;
-    
-    // Calculate visible cards
-    const visibleCards = Math.floor(containerWidth / totalCardWidth);
-    const totalCards = cards.length;
-    let currentPosition = 0;
-    
-    console.log('Container width:', containerWidth);
-    console.log('Card width:', cardWidth);
-    console.log('Total card width (with gap):', totalCardWidth);
-    console.log('Visible cards:', visibleCards);
-    
-    // Create indicators if needed
-    if (totalCards > visibleCards && visibleCards > 0) {
-        const totalSlides = totalCards - visibleCards + 1;
-        const indicatorsContainer = document.createElement('section');
-        indicatorsContainer.className = 'carousel-indicators';
-        
-        for (let i = 0; i < totalSlides; i++) {
-            const indicator = document.createElement('button');
-            indicator.className = 'carousel-indicator';
-            if (i === 0) indicator.classList.add('active');
-            indicator.setAttribute('data-index', i);
-            indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            indicator.addEventListener('click', () => goToSlide(i));
-            indicatorsContainer.appendChild(indicator);
-        }
-        
-        container.appendChild(indicatorsContainer);
-    }
-    
-    // Navigation function
-    function goToSlide(index) {
-        const maxSlide = Math.max(0, totalCards - visibleCards);
-        currentPosition = Math.max(0, Math.min(index, maxSlide));
-        const moveAmount = currentPosition * totalCardWidth;
-        
-        console.log('Moving to slide', index, 'Amount:', moveAmount);
-        track.style.transform = `translateX(-${moveAmount}px)`;
-        
-        // Update indicators
-        document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
-            ind.classList.toggle('active', i === currentPosition);
-        });
-    }
-    
-    // Next button
-    nextBtn.addEventListener('click', () => {
-        const maxSlide = Math.max(0, totalCards - visibleCards);
-        if (currentPosition < maxSlide) {
-            goToSlide(currentPosition + 1);
-        } else {
-            goToSlide(0);
-        }
-    });
-    
-    // Previous button
-    prevBtn.addEventListener('click', () => {
-        const maxSlide = Math.max(0, totalCards - visibleCards);
-        if (currentPosition > 0) {
-            goToSlide(currentPosition - 1);
-        } else {
-            goToSlide(maxSlide);
-        }
-    });
-    
-    // Reset position
-    track.style.transform = 'translateX(0)';
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            // Recalculate and reset
-            const newContainerWidth = container.offsetWidth;
-            const newVisibleCards = Math.floor(newContainerWidth / totalCardWidth);
-            
-            if (currentPosition > Math.max(0, totalCards - newVisibleCards)) {
-                currentPosition = 0;
-                track.style.transform = 'translateX(0)';
-            }
-        }
-    });
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+    
+    // Detect Chrome
+    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    
+    if (isChrome) {
+        // Force scrollbar to show in Chrome
+        track.style.overflowX = 'scroll';
+        track.style.overflowY = 'hidden';
+        track.style.scrollbarWidth = 'auto';
+        
+        // Add Chrome-specific class
+        track.classList.add('chrome-scrollbar');
+        
+        // Force a reflow to trigger scrollbar rendering
+        void track.offsetHeight;
+        
+        // Add a small delay and force scrollbar again
+        setTimeout(() => {
+            track.style.overflowX = 'scroll';
+        }, 100);
+    }
+    
+    // Remove indicators
+    const indicators = document.querySelector('.carousel-indicators');
+    if (indicators) indicators.remove();
+});
 </script>
 <body>
     <header class="nav-container">

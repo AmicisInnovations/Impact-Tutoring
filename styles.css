@@ -474,20 +474,86 @@ section{
     overflow: hidden; 
 }
 
+/* Carousel Track - Scrollable Container */
 .carousel-track {
     display: flex;
     gap: 2rem;
-    transition: transform 0.5s ease-in-out;
-    padding: 1rem;
+    padding: 1.5rem 1rem 2rem 1rem; /* Extra bottom padding for scrollbar */
+    overflow-x: auto;
+    overflow-y: hidden; /* Prevent vertical scrolling */
     scroll-behavior: smooth;
-    width: max-content; /* makes track as wide as content */
-    margin: 0 auto; /* Center the track */
+    scrollbar-width: auto; /* Firefox - always show scrollbar */
+    scrollbar-color: var(--primary-color) #f1f1f1;
+    
+    /* Force scrollbar to always be visible */
+    -ms-overflow-style: scrollbar; /* IE and Edge */
+    
+    /* Enable smooth scrolling with momentum */
+    -webkit-overflow-scrolling: touch;
+    
+    /* Prevent scroll-snap for natural scrolling */
+    scroll-snap-type: none;
+    
+    /* Make sure content can overflow */
+    width: max-content;
+    max-width: 100%;
 }
 
-
+/* FORCE VISIBLE SCROLLBAR - Webkit browsers (Chrome, Safari, Edge) */
 .carousel-track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    height: 14px !important; /* Thick scrollbar */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
+
+.carousel-track::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+    margin: 0 1rem;
+    border: 1px solid #ddd;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--primary-color), #4a6fc1);
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+    min-height: 40px; /* Minimum thumb size */
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #0a3a8a, #3a5cb5);
+    cursor: grab;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
+}
+
+.carousel-track::-webkit-scrollbar-button {
+    width: 16px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.carousel-track::-webkit-scrollbar-button:hover {
+    background-color: #e0e0e0;
+}
+
+.carousel-track::-webkit-scrollbar-button:single-button:start {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230c4298' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.carousel-track::-webkit-scrollbar-button:single-button:end {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230c4298' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
 
 .subject-card {
     position: relative; 
@@ -589,6 +655,29 @@ section{
 
 .carousel-indicator:hover {
     background: var(--secondary-color);
+}
+/* Chrome-specific scrollbar styles */
+.chrome-scrollbar {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+}
+
+.chrome-scrollbar::-webkit-scrollbar {
+    height: 14px !important;
+    display: block !important;
+}
+
+.chrome-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+    border-radius: 10px !important;
+    margin: 0 1rem !important;
+    border: 1px solid #ddd !important;
+}
+
+.chrome-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--primary-color), #4a6fc1) !important;
+    border-radius: 10px !important;
+    border: 2px solid #f1f1f1 !important;
 }
 
 
