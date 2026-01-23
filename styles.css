@@ -142,7 +142,7 @@ section{
 #intro {
      background: linear-gradient(rgba(241, 237, 237, 0.5), rgba(246, 244, 244, 0.5)), 
                 url("images/tutor.jpg") center/cover no-repeat;
-    min-height: 60vh; /* Full viewport height */
+    min-height: 80vh; /* Full viewport height */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -917,6 +917,10 @@ section{
     color: var(--primary-color);
 }
 
+#group:hover{
+    color: white;
+}
+
 .pricing-btn:hover {
     background-color: var(--primary-color);
     transform: translateY(-3px);
@@ -1332,33 +1336,31 @@ footer a:hover {
     }
 }
 
+
 @media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
-        gap: 3rem;
-    }
-    
-    .circle-image {
-        width: 300px;
-        height: 300px;
-    }
-    
-    .block {
-        position: relative;
-        width: 90% !important;
-        height: auto !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        margin: 1rem auto;
-    }
-    
-    .block-1,
-    .block-2 {
-        position: relative;
-        margin: 1rem auto;
-    }
+  .content-wrapper {
+    flex-direction: column;       /* stack items vertically */
+    gap: 2rem;                     /* smaller gap on mobile */
+  }
+
+  .picture-content,
+  .learn-content {
+    flex: 1 1 90%;                /* allow items to shrink and fit screen */
+    min-width: 0;                 /* critical: prevents horizontal scroll */
+    max-width: 100%;              /* let it fill the container width */
+    margin: 0 auto;               /* center horizontally */
+  }
+
+  .circle-image {
+    width: auto;                   /* scale image down */
+    height: 20%;                 /* keep aspect ratio */
+  }
+
+  .circle-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;                /* responsive image */
+  }
     
     .learn-content h2 {
         font-size: 2rem;
