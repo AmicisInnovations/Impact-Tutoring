@@ -27,12 +27,11 @@ body{
 
 main{
     flex: 1;
-    background-color: var(--primary-color);
 }
 
 .policy h1{
     text-align: center;
-    color: white;
+    color: var(--primary-color);
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
