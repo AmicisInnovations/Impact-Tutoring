@@ -65,6 +65,7 @@ i{
     margin: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
+    display: flex;
 }
 .tutor-card{
     background-color: white;
@@ -109,4 +110,27 @@ i{
     min-width: 300px;
     max-width: 600px;
     position: relative;
+}
+
+@media (max-width : 768px){
+    .tutor-card{
+        flex-direction: column;
+    }
+
+    .tutor-card-main{
+        flex-direction: column;
+    }
+
+    .tutor-text{
+        width: 100%;
+    }
+
+    .tutor-text p{
+        max-width: 100%;
+    }
+
+    .tutor-img{
+        width: 100%;
+        border-radius: 16px;
+    }
 }
