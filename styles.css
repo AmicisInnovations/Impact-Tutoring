@@ -769,7 +769,7 @@ section{
     flex: 1;
     min-width: 300px;
     max-width: 400px;
-    padding: 2.5rem 2rem;
+    padding: 2rem 2rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
